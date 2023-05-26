@@ -20,11 +20,11 @@ public class IdentityService {
         return true;
     }
 
-    public boolean isSuperuser(Long userId) {
+    public boolean isSuperuser() {
         User user = getUser();
 
         if (!user.getSuperuser()) {
-            log.warn("최고관리자 권한 없음: {}", userId);
+            log.warn("최고관리자 권한 없음: {}", user.getId());
             return false;
         }
 

@@ -14,7 +14,10 @@ import kr.pincoin.api.user.repository.DbRefreshTokenRepository;
 import kr.pincoin.api.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,6 +92,13 @@ public class UserService {
         dbRefreshTokenRepository.save(new DbRefreshToken(user));
 
         return new UserResponse(user);
+    }
+
+    @Transactional
+    @PreAuthorize("@identity.isSuperuser()")
+    public Page<User>
+    listUsers(Boolean active, Pageable pageable) {
+        return userRepository.findUsers(active, pageable);
     }
 
     private AccessTokenResponse getAccessTokenResponse(User user) {
