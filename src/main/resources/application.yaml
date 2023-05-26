@@ -37,3 +37,14 @@ logging:
     org.hibernate.type.descriptor.sql: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: DEBUG
     reactor.netty.http.client.HttpClient: DEBUG
+
+auth:
+  jwt-secret-key: 16fa6fb28b568ef097c355c498b5fab5ff83f9ab5816b0af660b9efe5af5f6f4
+
+security-config:
+  content-security-policy: default-src 'none'
+  cors:
+    origins: "*"
+    headers: "*"
+    methods: "*"
+    allow-credentials: true
