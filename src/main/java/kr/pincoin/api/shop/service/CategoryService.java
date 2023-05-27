@@ -1,6 +1,7 @@
 package kr.pincoin.api.shop.service;
 
 import kr.pincoin.api.shop.domain.Category;
+import kr.pincoin.api.shop.dto.CategoryProductResult;
 import kr.pincoin.api.shop.repository.CategoryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,14 @@ public class CategoryService {
     public Optional<Category>
     getCategory(Long categoryId) {
         return categoryRepository.findCategory(categoryId);
+    }
+
+    /**
+     * 분류 - 상품 목록 보기
+     */
+    @Transactional
+    public List<CategoryProductResult>
+    listProducts(Long categoryId) {
+        return categoryRepository.findCategoryProducts(categoryId);
     }
 }

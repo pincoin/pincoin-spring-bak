@@ -85,5 +85,5 @@ public class Product extends BaseDateTime {
     private String naverPartnerTitlePg;
 
     @Column(name = "naver_attribute")
-    private Boolean naverAttribute;
+    private String naverAttribute;
 }

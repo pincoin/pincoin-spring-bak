@@ -2,6 +2,7 @@ package kr.pincoin.api.shop.controller;
 
 import kr.pincoin.api.home.exception.ApiException;
 import kr.pincoin.api.shop.dto.CategoryResponse;
+import kr.pincoin.api.shop.dto.ProductResponse;
 import kr.pincoin.api.shop.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -44,5 +45,17 @@ public class CategoryController {
                 .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND,
                                                     "분류 없음",
                                                     List.of("조회 가능한 분류가 없습니다.")));
+    }
+
+    /**
+     * 분류 - 소속 상품 목록
+     */
+    @GetMapping("/{categoryId}/products")
+    public ResponseEntity<List<ProductResponse>>
+    productList(@PathVariable Long categoryId) {
+        return ResponseEntity.ok().body(categoryService.listProducts(categoryId)
+                                                .stream()
+                                                .map(ProductResponse::new)
+                                                .toList());
     }
 }
