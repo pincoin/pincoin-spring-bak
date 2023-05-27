@@ -60,6 +60,18 @@ public class Category extends BaseDateTime {
     @Column(name = "naver_maker_name")
     private String naverMakerName;
 
+    @Column(name = "lft")
+    private Long lft;
+
+    @Column(name = "rght")
+    private Long rght;
+
+    @Column(name = "tree_id")
+    private Long treeId;
+
+    @Column(name = "level")
+    private Long level;
+
     public Category(Category parent,
                     Store store,
                     String title,
@@ -72,7 +84,11 @@ public class Category extends BaseDateTime {
                     BigDecimal pgDiscountRate,
                     String naverSearchTag,
                     String naverBrandName,
-                    String naverMakerName) {
+                    String naverMakerName,
+                    Long lft,
+                    Long rght,
+                    Long treeId,
+                    Long level) {
         this.parent = parent;
         this.store = store;
 
@@ -88,5 +104,10 @@ public class Category extends BaseDateTime {
         this.naverSearchTag = naverSearchTag;
         this.naverBrandName = naverBrandName;
         this.naverMakerName = naverMakerName;
+
+        this.lft = lft;
+        this.rght = rght;
+        this.treeId = treeId;
+        this.level = level;
     }
 }
