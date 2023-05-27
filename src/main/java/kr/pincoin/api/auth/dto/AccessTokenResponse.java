@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import kr.pincoin.api.user.domain.User;
+import kr.pincoin.api.user.dto.UserResult;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -71,20 +71,19 @@ public class AccessTokenResponse {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-
     }
 
     public AccessTokenResponse(String accessToken,
                                Integer expiresIn,
                                UUID refreshToken,
-                               User user) {
+                               UserResult result) {
         this(accessToken,
              expiresIn,
              refreshToken,
-             user.getId(),
-             user.getEmail(),
-             user.getUsername(),
-             user.getFirstName(),
-             user.getLastName());
+             result.getId(),
+             result.getEmail(),
+             result.getUsername(),
+             result.getFirstName(),
+             result.getLastName());
     }
 }

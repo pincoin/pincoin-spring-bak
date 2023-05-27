@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import kr.pincoin.api.user.dto.UserResult;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -79,6 +80,20 @@ public class User implements UserDetails {
         this.active = false;
 
         this.dateJoined = LocalDateTime.now();
+    }
+
+    public User(UserResult result) {
+        this.username = result.getUsername();
+        this.password = result.getPassword();
+        this.firstName = result.getFirstName();
+        this.lastName = result.getLastName();
+        this.email = result.getEmail();
+
+        this.superuser = result.getSuperuser();
+        this.staff = result.getStaff();
+        this.active = result.getActive();
+
+        this.dateJoined = result.getDateJoined();
     }
 
     public User activate() {

@@ -22,6 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
                 .findUserByUsername(username, true)
+                .map(User::new)
                 .orElseThrow(() -> new UsernameNotFoundException("가입 승인 완료 후 로그인 가능합니다."));
     }
 }

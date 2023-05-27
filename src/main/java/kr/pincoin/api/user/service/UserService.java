@@ -10,6 +10,7 @@ import kr.pincoin.api.user.domain.DbRefreshToken;
 import kr.pincoin.api.user.domain.User;
 import kr.pincoin.api.user.dto.UserCreateRequest;
 import kr.pincoin.api.user.dto.UserResponse;
+import kr.pincoin.api.user.dto.UserResult;
 import kr.pincoin.api.user.repository.DbRefreshTokenRepository;
 import kr.pincoin.api.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -54,10 +55,10 @@ public class UserService {
     public Optional<AccessTokenResponse>
     authenticate(PasswordGrantRequest request) {
         return userRepository.findUserByEmail(request.getEmail(), true)
-                .map(user -> {
+                .map(result -> {
                     AccessTokenResponse response = null;
-                    if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-                        response = getAccessTokenResponse(user);
+                    if (passwordEncoder.matches(request.getPassword(), result.getPassword())) {
+                        response = getAccessTokenResponse(result);
                     }
                     return Optional.ofNullable(response);
                 })
@@ -101,14 +102,14 @@ public class UserService {
         return userRepository.findUsers(active, pageable);
     }
 
-    private AccessTokenResponse getAccessTokenResponse(User user) {
+    private AccessTokenResponse getAccessTokenResponse(UserResult result) {
         // 1. 액세스 토큰 생성 (디비 저장 안 함)
-        String accessToken = tokenProvider.createAccessToken(user.getUsername(), user.getId());
+        String accessToken = tokenProvider.createAccessToken(result.getUsername(), result.getId());
 
         // 2. 리프레시 토큰 생성 (디비 저장)
         UUID refreshToken = tokenProvider.createRefreshToken();
 
-        if (dbRefreshTokenRepository.refresh(refreshToken, user.getId()) != 1) {
+        if (dbRefreshTokenRepository.refresh(refreshToken, result.getId()) != 1) {
             throw new ApiException(HttpStatus.CONFLICT,
                                    "갱신 토큰 생성 실패",
                                    List.of("갱신 토큰 테이블 레코드가 존재하지 않습니다."));
@@ -117,6 +118,6 @@ public class UserService {
         return new AccessTokenResponse(accessToken,
                                        ACCESS_TOKEN_EXPIRES_IN,
                                        refreshToken,
-                                       user);
+                                       result);
     }
 }
