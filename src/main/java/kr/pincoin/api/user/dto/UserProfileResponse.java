@@ -20,44 +20,12 @@ public class UserProfileResponse extends UserResponse {
     @JsonProperty("documentVerified")
     private Boolean documentVerified;
 
-    @JsonProperty("photoId")
-    private String photoId;
-
-    @JsonProperty("card")
-    private String card;
-
-    @JsonProperty("totalOrderCount")
-    private Long totalOrderCount;
-
-    @JsonProperty("lastPurchased")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime lastPurchased;
-
-    @JsonProperty("maxPrice")
-    private BigDecimal maxPrice;
-
-    @JsonProperty("averagePrice")
-    private BigDecimal averagePrice;
-
-    @JsonProperty("memo")
-    private String memo;
-
     @JsonProperty("phoneVerifiedStatus")
     private Long phoneVerifiedStatus;
 
     @JsonProperty("dateOfBirth")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
-
-    @JsonProperty("firstPurchased")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime firstPurchased;
-
-    @JsonProperty("totalListPrice")
-    private BigDecimal totalListPrice;
-
-    @JsonProperty("totalSellingPrice")
-    private BigDecimal totalSellingPrice;
 
     @JsonProperty("domestic")
     private Long domestic;
@@ -67,19 +35,6 @@ public class UserProfileResponse extends UserResponse {
 
     @JsonProperty("telecom")
     private String telecom;
-
-    @JsonProperty("notPurchasedMonths")
-    private Boolean notPurchasedMonths;
-
-    @JsonProperty("repurchased")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime repurchased;
-
-    @JsonProperty("mileage")
-    private BigDecimal mileage;
-
-    @JsonProperty("allowOrder")
-    private Boolean allowOrder;
 
     public UserProfileResponse(UserProfileResult result) {
         super(result.getId(),
@@ -95,24 +50,10 @@ public class UserProfileResponse extends UserResponse {
         this.address = result.getAddress();
         this.phoneVerified = result.getPhoneVerified();
         this.documentVerified = result.getDocumentVerified();
-        this.photoId = result.getPhotoId();
-        this.card = result.getCard();
-        this.totalOrderCount = result.getTotalOrderCount();
-        this.lastPurchased = result.getLastPurchased();
-        this.maxPrice = result.getMaxPrice();
-        this.averagePrice = result.getAveragePrice();
-        this.memo = result.getMemo();
         this.phoneVerifiedStatus = result.getPhoneVerifiedStatus();
         this.dateOfBirth = result.getDateOfBirth();
-        this.firstPurchased = result.getFirstPurchased();
-        this.totalListPrice = result.getTotalListPrice();
-        this.totalSellingPrice = result.getTotalSellingPrice();
         this.domestic = result.getDomestic();
         this.gender = result.getGender();
         this.telecom = result.getTelecom();
-        this.notPurchasedMonths = result.getNotPurchasedMonths();
-        this.repurchased = result.getRepurchased();
-        this.mileage = result.getMileage();
-        this.allowOrder = result.getAllowOrder();
     }
 }
