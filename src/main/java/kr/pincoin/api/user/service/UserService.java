@@ -9,6 +9,7 @@ import kr.pincoin.api.home.exception.ApiException;
 import kr.pincoin.api.user.domain.DbRefreshToken;
 import kr.pincoin.api.user.domain.User;
 import kr.pincoin.api.user.dto.UserCreateRequest;
+import kr.pincoin.api.user.dto.UserProfileResult;
 import kr.pincoin.api.user.dto.UserResponse;
 import kr.pincoin.api.user.dto.UserResult;
 import kr.pincoin.api.user.repository.DbRefreshTokenRepository;
@@ -95,11 +96,24 @@ public class UserService {
         return new UserResponse(user);
     }
 
+    /**
+     * 고객관리 - 회원목록
+     */
     @Transactional
     @PreAuthorize("@identity.isSuperuser()")
     public Page<User>
     listUsers(Boolean active, Pageable pageable) {
         return userRepository.findUsers(active, pageable);
+    }
+
+    /**
+     * 고객관리 - 회원정보
+     */
+    @Transactional
+    @PreAuthorize("@identity.isSuperuser() or @identity.isOwner(userId)")
+    public Optional<UserProfileResult>
+    getUser(Long userId) {
+        return userRepository.findUser(userId);
     }
 
     private AccessTokenResponse getAccessTokenResponse(UserResult result) {

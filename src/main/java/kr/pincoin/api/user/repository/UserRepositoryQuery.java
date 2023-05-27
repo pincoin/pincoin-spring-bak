@@ -1,6 +1,7 @@
 package kr.pincoin.api.user.repository;
 
 import kr.pincoin.api.user.domain.User;
+import kr.pincoin.api.user.dto.UserProfileResult;
 import kr.pincoin.api.user.dto.UserResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,8 @@ public interface UserRepositoryQuery {
     Optional<UserResult> findUserByEmail(String email, Boolean active);
 
     Optional<UserResult> findUserWithDbRefreshToken(UUID refreshToken, Boolean active, LocalDateTime now);
+
+    Optional<UserProfileResult> findUser(Long id);
 
     Page<User> findUsers(Boolean active, Pageable pageable);
 }
