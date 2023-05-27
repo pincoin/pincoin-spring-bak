@@ -4,6 +4,7 @@ import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.pincoin.api.user.domain.QDbRefreshToken;
+import kr.pincoin.api.user.domain.QEmailAddress;
 import kr.pincoin.api.user.domain.QUser;
 import kr.pincoin.api.user.domain.User;
 import org.springframework.data.domain.Page;
@@ -36,10 +37,15 @@ public class UserRepositoryImpl implements UserRepositoryQuery {
     @Override
     public Optional<User> findUserByEmail(String email, Boolean active) {
         QUser user = QUser.user;
+        QEmailAddress emailAddress = QEmailAddress.emailAddress;
 
         return Optional.ofNullable(queryFactory.select(user)
                                            .from(user)
-                                           .where(user.email.eq(email),
+                                           .innerJoin(emailAddress)
+                                           .on(emailAddress.user.id.eq(user.id))
+                                           .where(emailAddress.email.eq(email),
+                                                  emailAddress.primary.isTrue(),
+                                                  emailAddress.verified.isTrue(),
                                                   user.active.isTrue())
                                            .fetchOne());
     }

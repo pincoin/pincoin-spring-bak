@@ -86,6 +86,11 @@ public class User implements UserDetails {
         return this;
     }
 
+    public User inactivate() {
+        active = false;
+        return this;
+    }
+
     /**
      * UserDetails 메소드 구현체
      */
