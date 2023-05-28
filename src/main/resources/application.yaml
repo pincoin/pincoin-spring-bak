@@ -56,3 +56,6 @@ aligo:
 
 line-notify:
   token: line-notify-token-issued-by-line
+
+mailgun:
+  api-key: mailgun-api-key-issued-by-mailgun
