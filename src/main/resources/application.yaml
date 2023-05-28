@@ -54,3 +54,5 @@ aligo:
   user-id: user-id
   sender: 01012345678
 
+line-notify:
+  token: line-notify-token-issued-by-line
