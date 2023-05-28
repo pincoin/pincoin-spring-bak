@@ -126,6 +126,7 @@ public class SecurityConfig {
                                            .requestMatchers("/auth/**").permitAll()
                                            .requestMatchers("/users/**").permitAll()
                                            .requestMatchers("/categories/**").permitAll()
+                                           .requestMatchers("/aligo/**").permitAll()
                                            // anyRequest().authenticated() - rememberMe 로그인 허용
                                            .anyRequest().fullyAuthenticated() //rememberMe 허용 안 함
                                   );

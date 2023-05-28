@@ -48,3 +48,9 @@ security-config:
     headers: "*"
     methods: "*"
     allow-credentials: true
+
+aligo:
+  api-key: api-key-issued-by-aligo
+  user-id: user-id
+  sender: 01012345678
+
