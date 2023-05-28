@@ -33,16 +33,4 @@ public class OrderProductVoucher extends BaseDateTime {
 
     @Column(name = "remarks")
     private String remarks;
-
-    public OrderProductVoucher(OrderProduct orderProduct,
-                               Voucher voucher,
-                               String code,
-                               Boolean revoked,
-                               String remarks) {
-        this.orderProduct = orderProduct;
-        this.voucher = voucher;
-        this.code = code;
-        this.revoked = revoked;
-        this.remarks = remarks;
-    }
 }

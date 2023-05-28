@@ -28,14 +28,4 @@ public class Voucher extends BaseDateTime {
 
     @Column(name = "status")
     private Long status;
-
-    public Voucher(Product product,
-                   String code,
-                   String remarks,
-                   Long status) {
-        this.product = product;
-        this.code = code;
-        this.remarks = remarks;
-        this.status = status;
-    }
 }

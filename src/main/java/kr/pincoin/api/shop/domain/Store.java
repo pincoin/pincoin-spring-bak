@@ -53,30 +53,4 @@ public class Store extends BaseDateTime {
 
     @Column(name = "under_attack")
     private Boolean underAttack;
-
-    public Store(String name,
-                 String code,
-                 String theme,
-                 String phone,
-                 String phone1,
-                 String kakao,
-                 String bankAccount,
-                 String escrowAccount,
-                 Long chunkSize,
-                 Long blockSize,
-                 Boolean signUpOpen,
-                 Boolean underAttack) {
-        this.name = name;
-        this.code = code;
-        this.theme = theme;
-        this.phone = phone;
-        this.phone1 = phone1;
-        this.kakao = kakao;
-        this.bankAccount = bankAccount;
-        this.escrowAccount = escrowAccount;
-        this.chunkSize = chunkSize;
-        this.blockSize = blockSize;
-        this.signUpOpen = signUpOpen;
-        this.underAttack = underAttack;
-    }
 }

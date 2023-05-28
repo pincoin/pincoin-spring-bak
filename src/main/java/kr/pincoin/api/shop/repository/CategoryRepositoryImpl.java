@@ -1,6 +1,7 @@
 package kr.pincoin.api.shop.repository;
 
 import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.pincoin.api.shop.domain.Category;
 import kr.pincoin.api.shop.domain.QCategory;
@@ -28,11 +29,17 @@ public class CategoryRepositoryImpl implements CategoryRepositoryQuery {
     }
 
     @Override
-    public List<Category> findCategories() {
+    public List<Category> findCategories(Boolean pg) {
         QCategory category = QCategory.category;
 
-        return queryFactory.select(category)
-                .from(category)
+        JPAQuery<Category> contentQuery = queryFactory.select(category)
+                .from(category);
+
+        if (pg != null) {
+            contentQuery = contentQuery.where(category.pg.eq(pg));
+        }
+
+        return contentQuery
                 .orderBy(category.treeId.asc(),
                          category.lft.asc())
                 .fetch();

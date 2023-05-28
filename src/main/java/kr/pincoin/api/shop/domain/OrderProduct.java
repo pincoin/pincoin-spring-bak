@@ -39,20 +39,4 @@ public class OrderProduct extends BaseDateTime {
 
     @Column(name = "quantity")
     private Long quantity;
-
-    public OrderProduct(Order order,
-                        String name,
-                        String subtitle,
-                        String code,
-                        BigDecimal listPrice,
-                        BigDecimal sellingPrice,
-                        Long quantity) {
-        this.order = order;
-        this.name = name;
-        this.subtitle = subtitle;
-        this.code = code;
-        this.listPrice = listPrice;
-        this.sellingPrice = sellingPrice;
-        this.quantity = quantity;
-    }
 }

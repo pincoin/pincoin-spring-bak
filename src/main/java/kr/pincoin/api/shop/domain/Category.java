@@ -71,43 +71,4 @@ public class Category extends BaseDateTime {
 
     @Column(name = "level")
     private Long level;
-
-    public Category(Category parent,
-                    Store store,
-                    String title,
-                    String slug,
-                    String thumbnail,
-                    String description,
-                    String description1,
-                    BigDecimal discountRate,
-                    Boolean pg,
-                    BigDecimal pgDiscountRate,
-                    String naverSearchTag,
-                    String naverBrandName,
-                    String naverMakerName,
-                    Long lft,
-                    Long rght,
-                    Long treeId,
-                    Long level) {
-        this.parent = parent;
-        this.store = store;
-
-        this.title = title;
-        this.slug = slug;
-
-        this.thumbnail = thumbnail;
-        this.description = description;
-        this.description1 = description1;
-        this.discountRate = discountRate;
-        this.pg = pg;
-        this.pgDiscountRate = pgDiscountRate;
-        this.naverSearchTag = naverSearchTag;
-        this.naverBrandName = naverBrandName;
-        this.naverMakerName = naverMakerName;
-
-        this.lft = lft;
-        this.rght = rght;
-        this.treeId = treeId;
-        this.level = level;
-    }
 }

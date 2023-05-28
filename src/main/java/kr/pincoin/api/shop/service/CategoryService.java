@@ -24,8 +24,8 @@ public class CategoryService {
      */
     @Transactional
     public List<Category>
-    listCategories() {
-        return categoryRepository.findCategories();
+    listCategories(Boolean pg) {
+        return categoryRepository.findCategories(pg);
     }
 
     /**

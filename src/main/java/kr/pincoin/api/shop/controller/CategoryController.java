@@ -27,8 +27,8 @@ public class CategoryController {
      */
     @GetMapping("")
     public ResponseEntity<List<CategoryResponse>>
-    categoryList() {
-        return ResponseEntity.ok().body(categoryService.listCategories()
+    categoryList(@RequestParam(name = "pg", required = false) Boolean pg) {
+        return ResponseEntity.ok().body(categoryService.listCategories(pg)
                                                 .stream()
                                                 .map(CategoryResponse::new)
                                                 .toList());

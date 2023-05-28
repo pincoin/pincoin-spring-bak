@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface CategoryRepositoryQuery {
     Optional<Category> findCategory(Long categoryId);
 
-    List<Category> findCategories();
+    List<Category> findCategories(Boolean pg);
 
     List<CategoryProductResult> findCategoryProducts(Long categoryId);
 }
