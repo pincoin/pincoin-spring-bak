@@ -13,9 +13,4 @@ public class AligoSendRequest {
 
     @JsonProperty("message")
     private String message;
-
-    public AligoSendRequest(String phone, String message) {
-        this.phone = phone;
-        this.message = message;
-    }
 }

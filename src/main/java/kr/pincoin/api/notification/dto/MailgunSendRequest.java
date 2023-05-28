@@ -19,14 +19,4 @@ public class MailgunSendRequest {
 
     @JsonProperty("text")
     private String text;
-
-    public MailgunSendRequest(String from,
-                              String to,
-                              String subject,
-                              String text) {
-        this.from = from;
-        this.to = to;
-        this.subject = subject;
-        this.text = text;
-    }
 }

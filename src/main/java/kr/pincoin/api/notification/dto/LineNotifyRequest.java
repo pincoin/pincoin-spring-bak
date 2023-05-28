@@ -10,8 +10,4 @@ import lombok.NoArgsConstructor;
 public class LineNotifyRequest {
     @JsonProperty("message")
     private String message;
-
-    public LineNotifyRequest(String message) {
-        this.message = message;
-    }
 }

@@ -1,7 +1,6 @@
 package kr.pincoin.api.auth.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -31,8 +30,4 @@ public class RefreshTokenRequest {
 
     @JsonProperty("clientSecret")
     private String clientSecret;
-
-    public RefreshTokenRequest(@NotNull UUID refreshToken) {
-        this.refreshToken = refreshToken;
-    }
 }
