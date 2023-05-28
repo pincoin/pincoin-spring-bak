@@ -2,6 +2,7 @@ package kr.pincoin.api.notification.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kr.pincoin.api.notification.dto.AligoSendRequest;
 import kr.pincoin.api.notification.dto.AligoSendResponse;
 import kr.pincoin.api.notification.dto.AligoSendResult;
 import lombok.extern.slf4j.Slf4j;
@@ -35,17 +36,17 @@ public class AligoService {
     }
 
     @Transactional
-    public Optional<AligoSendResponse> send(String receiver, String message) {
+    public Optional<AligoSendResponse> sendSms(AligoSendRequest request) {
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
 
         formData.add("key", apiKey);
         formData.add("user_id", userId);
         formData.add("sender", sender);
-        formData.add("receiver", receiver);
-        formData.add("msg", message);
+        formData.add("receiver", request.getPhone());
+        formData.add("msg", request.getMessage());
 
         // 주의사항:
-        // api 주소 끝에 반드시 /를 붙여줘야 한다. 그렇지 않으면 301 리다이렉트
+        // api 주소 끝에 반드시 "/"를 붙여줘야 한다. 그렇지 않으면 301 리다이렉트
         // accept 헤더가 application/json이 아니라 text/html이므로 문자열로 받아서 json 파싱
 
         String jsonString = webClient.post()

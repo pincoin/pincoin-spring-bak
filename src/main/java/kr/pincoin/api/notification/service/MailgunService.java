@@ -38,8 +38,8 @@ public class MailgunService {
 
         MailgunSendResult result = webClient.post()
                 .uri("/messages")
-                .contentType(MediaType.MULTIPART_FORM_DATA)
                 .headers(header -> header.setBasicAuth("api", apiKey))
+                .contentType(MediaType.MULTIPART_FORM_DATA)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromFormData(formData))
                 .retrieve()

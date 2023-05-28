@@ -28,7 +28,7 @@ public class AligoController {
     @PreAuthorize("isAuthenticated() and @identity.isSuperuser()")
     public ResponseEntity<AligoSendResponse>
     send(@Valid @RequestBody AligoSendRequest request) {
-        return aligoService.send(request.getPhone(), request.getMessage())
+        return aligoService.sendSms(request)
                 .map(response -> ResponseEntity.ok().body(response))
                 .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND,
                                                     "문자 전송 실패",

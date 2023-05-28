@@ -1,5 +1,6 @@
 package kr.pincoin.api.notification.service;
 
+import kr.pincoin.api.notification.dto.LineNotifyRequest;
 import kr.pincoin.api.notification.dto.LineNotifyResponse;
 import kr.pincoin.api.notification.dto.LineNotifyResult;
 import lombok.extern.slf4j.Slf4j;
@@ -27,15 +28,15 @@ public class LineNotifyService {
     }
 
     @Transactional
-    public Optional<LineNotifyResponse> send(String message) {
+    public Optional<LineNotifyResponse> send(LineNotifyRequest request) {
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
 
-        formData.add("message", message);
+        formData.add("message", request.getMessage());
 
         LineNotifyResult result = webClient.post()
                 .uri("/notify")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .headers(header -> header.setBearerAuth(token))
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromFormData(formData))
                 .retrieve()

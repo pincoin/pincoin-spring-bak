@@ -28,7 +28,7 @@ public class LineNotifyController {
     @PreAuthorize("isAuthenticated() and @identity.isSuperuser()")
     public ResponseEntity<LineNotifyResponse>
     send(@Valid @RequestBody LineNotifyRequest request) {
-        return lineNotifyService.send(request.getMessage())
+        return lineNotifyService.send(request)
                 .map(response -> ResponseEntity.ok().body(response))
                 .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND,
                                                     "라인 메신저 통보 실패",
