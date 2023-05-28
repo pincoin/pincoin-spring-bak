@@ -43,7 +43,6 @@ public class AligoService {
         formData.add("sender", sender);
         formData.add("receiver", receiver);
         formData.add("msg", message);
-        formData.add("testmode_yn", "Y");
 
         // 주의사항:
         // api 주소 끝에 반드시 /를 붙여줘야 한다. 그렇지 않으면 301 리다이렉트
@@ -52,7 +51,7 @@ public class AligoService {
         String jsonString = webClient.post()
                 .uri("/send/")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .accept(MediaType.APPLICATION_JSON)
+                .accept(MediaType.TEXT_HTML)
                 .body(BodyInserters.fromFormData(formData))
                 .retrieve()
                 .bodyToMono(String.class)
