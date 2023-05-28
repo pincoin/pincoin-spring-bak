@@ -1,6 +1,9 @@
 package kr.pincoin.api.shop.dto;
 
 import kr.pincoin.api.shop.domain.Order;
+import kr.pincoin.api.shop.domain.converter.OrderStatus;
+import kr.pincoin.api.shop.domain.converter.OrderVisible;
+import kr.pincoin.api.shop.domain.converter.PaymentMethod;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,13 +26,13 @@ public class OrderResponse {
 
     private String ipAddress;
 
-    private Long paymentMethod;
+    private PaymentMethod paymentMethod;
 
     private String transactionId;
 
-    private Long status;
+    private OrderStatus status;
 
-    private Long visible;
+    private OrderVisible visible;
 
     private BigDecimal totalListPrice;
 

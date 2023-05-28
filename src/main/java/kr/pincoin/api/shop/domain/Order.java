@@ -3,6 +3,7 @@ package kr.pincoin.api.shop.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import kr.pincoin.api.home.domain.BaseDateTime;
+import kr.pincoin.api.shop.domain.converter.*;
 import kr.pincoin.api.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -43,16 +44,22 @@ public class Order extends BaseDateTime {
     private String ipAddress;
 
     @Column(name = "payment_method")
-    private Long paymentMethod;
+    @NotNull
+    @Convert(converter = PaymentMethodConverter.class)
+    private PaymentMethod paymentMethod;
 
     @Column(name = "transaction_id")
     private String transactionId;
 
     @Column(name = "status")
-    private Long status;
+    @NotNull
+    @Convert(converter = OrderStatusConverter.class)
+    private OrderStatus status;
 
     @Column(name = "visible")
-    private Long visible;
+    @NotNull
+    @Convert(converter = OrderVisibleConverter.class)
+    private OrderVisible visible;
 
     @Column(name = "total_list_price")
     private BigDecimal totalListPrice;
