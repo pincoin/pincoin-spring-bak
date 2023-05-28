@@ -30,43 +30,43 @@ public class Order extends BaseDateTime {
     @NotNull
     private User user;
 
-    @JoinColumn(name = "fullname")
+    @Column(name = "fullname")
     private String fullName;
 
-    @JoinColumn(name = "user_agent")
+    @Column(name = "user_agent")
     private String userAgent;
 
-    @JoinColumn(name = "accept_language")
+    @Column(name = "accept_language")
     private String acceptLanguage;
 
-    @JoinColumn(name = "ip_address")
+    @Column(name = "ip_address")
     private String ipAddress;
 
-    @JoinColumn(name = "payment_method")
+    @Column(name = "payment_method")
     private Long paymentMethod;
 
-    @JoinColumn(name = "transaction_id")
+    @Column(name = "transaction_id")
     private String transactionId;
 
-    @JoinColumn(name = "status")
+    @Column(name = "status")
     private Long status;
 
-    @JoinColumn(name = "visible")
+    @Column(name = "visible")
     private Long visible;
 
-    @JoinColumn(name = "total_list_price")
+    @Column(name = "total_list_price")
     private BigDecimal totalListPrice;
 
-    @JoinColumn(name = "total_selling_price")
+    @Column(name = "total_selling_price")
     private BigDecimal totalSellingPrice;
 
-    @JoinColumn(name = "currency")
-    private Long currency;
+    @Column(name = "currency")
+    private String currency;
 
-    @JoinColumn(name = "message")
+    @Column(name = "message")
     private String message;
 
-    @JoinColumn(name = "suspicious")
+    @Column(name = "suspicious")
     private Boolean suspicious;
 
     @ManyToOne(optional = false,

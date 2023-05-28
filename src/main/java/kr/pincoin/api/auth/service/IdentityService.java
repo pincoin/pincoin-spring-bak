@@ -13,7 +13,7 @@ public class IdentityService {
         User user = getUser();
 
         if (!user.getId().equals(userId)) {
-            log.warn("요청 리소스의 사용자 아이디 불일치: {}", userId);
+            log.warn("요청 리소스의 사용자 아이디 불일치: {}, {}", userId, user.getId());
             return false;
         }
 

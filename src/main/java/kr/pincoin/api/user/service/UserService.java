@@ -110,7 +110,7 @@ public class UserService {
      * 고객관리 - 회원정보
      */
     @Transactional
-    @PreAuthorize("isAuthenticated() and @identity.isSuperuser() or @identity.isOwner(userId)")
+    @PreAuthorize("isAuthenticated() and @identity.isSuperuser() or @identity.isOwner(#userId)")
     public Optional<UserProfileResult>
     getUser(Long userId) {
         return userRepository.findUser(userId);

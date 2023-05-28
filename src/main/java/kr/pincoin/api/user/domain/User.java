@@ -83,6 +83,7 @@ public class User implements UserDetails {
     }
 
     public User(UserResult result) {
+        this.id = result.getId();
         this.username = result.getUsername();
         this.password = result.getPassword();
         this.firstName = result.getFirstName();
