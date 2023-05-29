@@ -2,7 +2,7 @@ package kr.pincoin.api.shop.dto;
 
 import kr.pincoin.api.shop.domain.Order;
 import kr.pincoin.api.shop.domain.converter.OrderStatus;
-import kr.pincoin.api.shop.domain.converter.OrderVisible;
+import kr.pincoin.api.shop.domain.converter.OrderVisibleStatus;
 import kr.pincoin.api.shop.domain.converter.PaymentMethod;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -32,7 +32,7 @@ public class OrderResponse {
 
     private OrderStatus status;
 
-    private OrderVisible visible;
+    private OrderVisibleStatus visible;
 
     private BigDecimal totalListPrice;
 

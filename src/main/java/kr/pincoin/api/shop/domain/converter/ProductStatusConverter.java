@@ -6,9 +6,9 @@ import jakarta.persistence.Converter;
 import java.util.stream.Stream;
 
 @Converter
-public class OrderVisibleConverter implements AttributeConverter<OrderVisible, Integer> {
+public class ProductStatusConverter implements AttributeConverter<ProductStatus, Integer> {
     @Override
-    public Integer convertToDatabaseColumn(OrderVisible status) {
+    public Integer convertToDatabaseColumn(ProductStatus status) {
         if (status == null) {
             return null;
         }
@@ -17,12 +17,12 @@ public class OrderVisibleConverter implements AttributeConverter<OrderVisible, I
     }
 
     @Override
-    public OrderVisible convertToEntityAttribute(Integer code) {
+    public ProductStatus convertToEntityAttribute(Integer code) {
         if (code == null) {
             return null;
         }
 
-        return Stream.of(OrderVisible.values())
+        return Stream.of(ProductStatus.values())
                 .filter(c -> c.getCode().equals(code))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);

@@ -1,7 +1,9 @@
 package kr.pincoin.api.shop.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import kr.pincoin.api.home.domain.BaseDateTime;
+import kr.pincoin.api.shop.domain.converter.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -55,13 +57,17 @@ public class Product extends BaseDateTime {
     private Long position;
 
     @Column(name = "status")
-    private Long status;
+    @NotNull
+    @Convert(converter = ProductStatusConverter.class)
+    private ProductStatus status;
 
     @Column(name = "stock_quantity")
     private Long stockQuantity;
 
     @Column(name = "stock")
-    private Long stock;
+    @NotNull
+    @Convert(converter = StockStatusConverter.class)
+    private ProductStatus stock;
 
     @Column(name = "minimum_stock_level")
     private Long minimumStockLevel;

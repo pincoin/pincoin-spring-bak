@@ -7,20 +7,20 @@ import lombok.Getter;
 import java.util.stream.Stream;
 
 @Getter
-public enum OrderVisible {
-    HIDDEN(0, "숨감"),
-    VISIBLE(1, "노출");
+public enum ProductStatus {
+    ENABLED_STATUS(0, "사용"),
+    DISABLED_STATUS(1, "사용안함");
 
     private final Integer code;
     private final String description;
 
-    OrderVisible(Integer code, String description) {
+    ProductStatus(Integer code, String description) {
         this.code = code;
         this.description = description;
     }
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static OrderVisible fromString(String description) {
+    public static ProductStatus fromString(String description) {
         return Stream.of(values())
                 .filter(c -> c.getDescription().equals(description))
                 .findFirst()

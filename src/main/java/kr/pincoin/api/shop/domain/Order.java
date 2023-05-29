@@ -58,8 +58,8 @@ public class Order extends BaseDateTime {
 
     @Column(name = "visible")
     @NotNull
-    @Convert(converter = OrderVisibleConverter.class)
-    private OrderVisible visible;
+    @Convert(converter = OrderVisibleStatusConverter.class)
+    private OrderVisibleStatus visible;
 
     @Column(name = "total_list_price")
     private BigDecimal totalListPrice;
