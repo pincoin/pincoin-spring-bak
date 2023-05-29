@@ -2,6 +2,8 @@ package kr.pincoin.api.shop.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import kr.pincoin.api.shop.domain.converter.AccountChoices;
+import kr.pincoin.api.shop.domain.converter.AccountChoicesConverter;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,15 +26,17 @@ public class OrderPayment {
     @NotNull
     private Order order;
 
-    @JoinColumn(name = "account")
-    private Long account;
+    @Column(name = "account")
+    @NotNull
+    @Convert(converter = AccountChoicesConverter.class)
+    private AccountChoices account;
 
-    @JoinColumn(name = "amount")
+    @Column(name = "amount")
     private BigDecimal amount;
 
-    @JoinColumn(name = "balance")
+    @Column(name = "balance")
     private BigDecimal balance;
 
-    @JoinColumn(name = "received")
+    @Column(name = "received")
     private LocalDateTime received;
 }
