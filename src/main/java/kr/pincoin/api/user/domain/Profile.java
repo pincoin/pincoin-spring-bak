@@ -3,6 +3,7 @@ package kr.pincoin.api.user.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import kr.pincoin.api.home.domain.BaseDateTime;
+import kr.pincoin.api.user.domain.converter.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,11 @@ public class Profile extends BaseDateTime {
 
     @Column(name = "phone_verified")
     private Boolean phoneVerified;
+
+    @Column(name = "phone_verified_status")
+    @NotNull
+    @Convert(converter = PhoneVerifiedStatusConverter.class)
+    private PhoneVerifiedStatus phoneVerifiedStatus;
 
     @Column(name = "document_verified")
     private Boolean documentVerified;
@@ -58,9 +64,6 @@ public class Profile extends BaseDateTime {
     @Column(name = "memo")
     private String memo;
 
-    @Column(name = "phone_verified_status")
-    private Long phoneVerifiedStatus;
-
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
@@ -74,10 +77,14 @@ public class Profile extends BaseDateTime {
     private BigDecimal totalSellingPrice;
 
     @Column(name = "domestic")
-    private Long domestic;
+    @NotNull
+    @Convert(converter = DomesticChoicesConverter.class)
+    private DomesticChoices domestic;
 
     @Column(name = "gender")
-    private Long gender;
+    @NotNull
+    @Convert(converter = GenderChoicesConverter.class)
+    private GenderChoices gender;
 
     @Column(name = "telecom")
     private String telecom;
@@ -97,6 +104,7 @@ public class Profile extends BaseDateTime {
     public Profile(String phone,
                    String address,
                    Boolean phoneVerified,
+                   @NotNull PhoneVerifiedStatus phoneVerifiedStatus,
                    Boolean documentVerified,
                    String photoId,
                    String card,
@@ -106,13 +114,12 @@ public class Profile extends BaseDateTime {
                    BigDecimal averagePrice,
                    @NotNull User user,
                    String memo,
-                   Long phoneVerifiedStatus,
                    LocalDate dateOfBirth,
                    LocalDateTime firstPurchased,
                    BigDecimal totalListPrice,
                    BigDecimal totalSellingPrice,
-                   Long domestic,
-                   Long gender,
+                   @NotNull DomesticChoices domestic,
+                   @NotNull GenderChoices gender,
                    String telecom,
                    Boolean notPurchasedMonths,
                    LocalDateTime repurchased,
@@ -121,6 +128,7 @@ public class Profile extends BaseDateTime {
         this.phone = phone;
         this.address = address;
         this.phoneVerified = phoneVerified;
+        this.phoneVerifiedStatus = phoneVerifiedStatus;
         this.documentVerified = documentVerified;
         this.photoId = photoId;
         this.card = card;
@@ -130,7 +138,6 @@ public class Profile extends BaseDateTime {
         this.averagePrice = averagePrice;
         this.user = user;
         this.memo = memo;
-        this.phoneVerifiedStatus = phoneVerifiedStatus;
         this.dateOfBirth = dateOfBirth;
         this.firstPurchased = firstPurchased;
         this.totalListPrice = totalListPrice;
