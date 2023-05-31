@@ -30,6 +30,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web' // Rest Controller
 	implementation 'org.springframework.boot:spring-boot-starter-webflux' // WebClient, Mono, Flux 리액티브
 	implementation 'org.springframework.boot:spring-boot-starter-security' // spring-security 추가
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // sns 로그인
 	implementation 'org.springframework.boot:spring-boot-configuration-processor' // annotationProcessor: JSONException
 
 	// JJWT-API 추가 - 2022-04-28 (버전 명시): https://mvnrepository.com/artifact/io.jsonwebtoken
